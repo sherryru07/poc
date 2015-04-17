@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>POC for EM</title>
+
+    <!-- 1.) Load SAPUI5 (from a remote server), select theme and control library -->
+    <script id="sap-ui-bootstrap"
+            src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-libs="sap.ui.commons, sap.m">
+
+    </script>
+
+    <!-- 2.) Create a UI5 button and place it onto the page -->
+    <script>
+        //create the ApplicationHeader control
+        var oAppHeader = new sap.ui.commons.ApplicationHeader("appHeader");
+
+        //configure the branding area
+        oAppHeader.setLogoSrc("http://www.sap.com/global/images/SAPLogo.gif");
+        oAppHeader.setLogoText("Energy Monitoring & Analytics");
+
+        //configure the welcome area
+        oAppHeader.setDisplayWelcome(true);
+        oAppHeader.setUserName("***");
+
+        //configure the log off area
+        oAppHeader.setDisplayLogoff(true);
+
+        oAppHeader.placeAt("header");
+
+    </script>
+
+    <script>
+        var stdTitle1 = new sap.m.StandardTile({
+            icon:"",
+            number:"1",
+            title : "Meter Maintenance",
+            info : "Maintain the meters",
+                customData : new sap.ui.core.CustomData({
+                    key : "ref",
+                    value : "REF"
+                }),
+                press : function (evt) {
+                    var sRef = evt.getSource().data("ref");
+                    sap.m.URLHelper.redirect(sRef, true);
+                }
+            });
+
+        var stdTitle2 = new sap.m.StandardTile({
+            icon:"",
+            number:"2",
+            title : "Structure Maintenance",
+            info : "Maintain the structures",
+            customData : new sap.ui.core.CustomData({
+                key : "ref",
+                value : "REF"
+            }),
+            press : function (evt) {
+                var sRef = evt.getSource().data("ref");
+                sap.m.URLHelper.redirect(sRef, true);
+            }
+        });
+        stdTitle1.placeAt("contentContainer");
+        stdTitle2.placeAt("contentContainer");
+    </script>
+
+</head>
+<body class="sapUiBody">
+
+<div id="header"></div>
+
+<div id="contentContainer" style="height: 0px; width: 0px; -webkit-transform: translate3d(102px, 179px, 0px);"></div>
+</body>
+</html>
